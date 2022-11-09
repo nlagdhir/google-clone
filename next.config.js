@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains:['cdn2.downdetector.com']
+    domains:['upload.wikimedia.org'] 
   },
   swcMinify: true,
 }

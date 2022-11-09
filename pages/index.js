@@ -35,7 +35,7 @@ export default function Home() {
 
       <form className="flex flex-col items-center mt-40">
         <Image
-          src="https://cdn2.downdetector.com/static/uploads/logo/Google-new_19.png"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png"
           width="300"
           height="100"
           objectFit="cover"
