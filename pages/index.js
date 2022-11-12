@@ -13,11 +13,23 @@ export default function Home() {
   const search = (event) => {
     event.preventDefault();
     const term = searchInputRef.current.value;
-    if(!term.trim()) return;
+    if (!term.trim()) return;
 
     router.push(`/search?term=${term.trim()}&searchType=`);
+  };
 
-  }
+  const randomSearch = async (event) => {
+    event.preventDefault();
+    const randomTerm = await fetch(
+      `https://random-word-api.herokuapp.com/word?number=1`
+    ).then((response) => {
+      return response.json();
+    });
+    console.log(randomTerm);
+    if (!randomTerm) return;
+
+    router.push(`/search?term=${randomTerm}&searchType=`);
+  };
 
   return (
     <div>
@@ -43,12 +55,20 @@ export default function Home() {
 
         <div className="flex w-full mt-5 mx-auto max-w-[90%] border border-gray-200 hover:shadow-lg focus-within:shadow-lg px-5 py-3 rounded-full items-center sm:max-w-xl lg:max-w-2xl">
           <MagnifyingGlassIcon className="h-5 text-gray-500 mr-3" />
-          <input ref={searchInputRef} type="text" className="flex-grow focus:outline-none" />
+          <input
+            ref={searchInputRef}
+            type="text"
+            className="flex-grow focus:outline-none"
+          />
           <MicrophoneIcon className="h-5" />
         </div>
         <div className="flex flex-col sm:flex-row w-[50%] space-y-2 mt-8 sm:space-y-0 sm:space-x-4 justify-center">
-          <button onClick={search} className="btn">Google Search</button>
-          <button className="btn">I'm Feeling Lucky</button>
+          <button onClick={search} className="btn">
+            Google Search
+          </button>
+          <button className="btn" onClick={randomSearch}>
+            I&apos;m Feeling Lucky
+          </button>
         </div>
       </form>
 

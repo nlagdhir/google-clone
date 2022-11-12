@@ -1,19 +1,30 @@
 import User from "./user";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Header = () => {
-    return <>
-        <header className="flex justify-between p-5 text-sm text-gray-700">
-            <div className="flex space-x-4 items-center">
-                <p className="link">About</p>
-                <p className="link">Store</p>
-            </div>
-            <div className="flex space-x-4 items-center">
-                <p className="link">Gmail</p>
-                <p className="link">Images</p>
-                <User />
-            </div>
-        </header>
+  const router = useRouter();
+  return (
+    <>
+      <header className="flex justify-between p-5 text-sm text-gray-700">
+        <div className="flex space-x-4 items-center">
+          <Link legacyBehavior href="https://about.google/">
+            <a className="link">About</a>
+          </Link>
+          <Link legacyBehavior href="https://store.google.com">
+            <a className="link">Store</a>
+          </Link>
+        </div>
+        <div className="flex space-x-4 items-center">
+          <Link legacyBehavior href="https://mail.google.com">
+            <a className="link">Gmail</a>
+          </Link>
+          <a onClick={() => router.push(`/search?term=${router.query.term || "google"}&searchType=image`)} className="link">Images</a>
+          <User />
+        </div>
+      </header>
     </>
-}
+  );
+};
 
 export default Header;
